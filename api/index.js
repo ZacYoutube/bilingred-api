@@ -7,7 +7,11 @@ const app = express();
 
 require("dotenv").config();
 
-app.use(cors({origin: ['http://localhost:3000', 'https://bilingred-9l1ttrt8l-zacs-projects-5ebe772f.vercel.app', 'https://bilingred.vercel.app', 'https://bilingred-git-master-zacs-projects-5ebe772f.vercel.app']}));
+app.use(cors({
+    origin: ['http://localhost:3000', 'https://bilingred-ui-zacs-projects-5ebe772f.vercel.app', 'https://bilingred-ui.vercel.app', 'https://bilingred-ui-git-main-zacs-projects-5ebe772f.vercel.app'],
+    methods: 'GET,POST,PUT,DELETE,OPTIONS',
+    allowedHeaders: 'Content-Type,Authorization'
+}));
 app.use(express.json());
 
 // routes setup
@@ -60,7 +64,7 @@ function getUser(id){
 
 const io = require("socket.io")(8900,{
     cors:{
-        origin: ['http://localhost:3000', 'https://bilingred-9l1ttrt8l-zacs-projects-5ebe772f.vercel.app', 'https://bilingred.vercel.app', 'https://bilingred-git-master-zacs-projects-5ebe772f.vercel.app'],
+        origin: ['http://localhost:3000', 'https://bilingred-ui-zacs-projects-5ebe772f.vercel.app', 'https://bilingred-ui.vercel.app', 'https://bilingred-ui-git-main-zacs-projects-5ebe772f.vercel.app'],
     }
 });
 
