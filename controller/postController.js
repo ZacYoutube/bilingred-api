@@ -46,7 +46,7 @@ const getCount4Spec = asyncHandler(async(req, res) => {
 const getAllPosts = asyncHandler(async(req, res) => {
    
     try{
-        console.log(req.body)
+        // console.log(req.body)
        
         let query = Post.find({
             placeId : { $in: req.body.followedPlaces}
@@ -168,7 +168,7 @@ const deletePosts = asyncHandler(async(req, res) => {
     }
 
     if(post.userId.toString() !== user.id && user.role != "admin"){
-        console.log(user)
+        // console.log(user)
         res.status(401);
         throw new Error("User not authorized");
     }
@@ -235,9 +235,9 @@ const searchPosts = asyncHandler(async(req, res)=>{
     try{
         const query = req.query.query;
         const queryCut = jieba.extract(query, query.length).map(item => item['word']);
-        console.log(queryCut)
+        // console.log(queryCut)
         const searchStr = queryCut.join(" ");
-        console.log(searchStr);
+        // console.log(searchStr);
         // {createdAt:{$gte:ISODate("2021-01-01"),$lt:ISODate("2020-05-01"}}
         const results = await Post.find({$text: {$search: searchStr}}).sort({"createdAt": -1});
         // console.log(results)  
@@ -248,7 +248,7 @@ const searchPosts = asyncHandler(async(req, res)=>{
             item['profileImageUrl'] = userInfo.profilePictureURL;
             item['user'] = userInfo;
         }
-        console.log(tempList)
+        // console.log(tempList)
         res.status(200).json(tempList);     
     }catch(err){
         res.status(400).send(err);

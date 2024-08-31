@@ -52,7 +52,7 @@ const protect = asyncHandler( async (req, res, next) => {
                     decoded = jwt.verify(res.credentials.id_token, cert, { algorithms: ['RS256'] });
                 }
                 req.user = await User.findOne({email: decoded?.email})
-                console.log(req.user);
+                // console.log(req.user);
                 next();
             }else{
                 const decoded = jwt.verify(token, process.env.REACT_APP_JWT_SECRET)

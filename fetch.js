@@ -17,6 +17,5 @@ const axios = require('axios');
     }
   );
   const data = await response.json(); // Here you have the data that you need
-console.log(data)
 //   console.log(JSON.stringify(data));
 })();

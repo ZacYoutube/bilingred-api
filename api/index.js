@@ -9,7 +9,7 @@ require("dotenv").config();
 
 app.use(cors({
     origin: ['http://localhost:3000', 'https://bilingred-ui-zacs-projects-5ebe772f.vercel.app', 'https://bilingred-ui.vercel.app', 'https://bilingred-ui-git-main-zacs-projects-5ebe772f.vercel.app'],
-    methods: 'GET,POST,PUT,DELETE,OPTIONS',
+    methods: 'GET,POST,PUT,DELETE,OPTIONS,PATCH',
     allowedHeaders: 'Content-Type,Authorization'
 }));
 app.use(express.json());
@@ -21,12 +21,15 @@ const msgRoute = require("../routes/message");
 const postRoute = require('../routes/post');
 const placeRoute = require('../routes/place');
 const tokenRoute = require("../routes/token");
+const commentRoute = require("../routes/comment");
+
 app.use("/conversation", converRoute);
 app.use("/user", authRoute);
 app.use("/messages", msgRoute);
 app.use("/post", postRoute);
 app.use("/place", placeRoute);
 app.use("/token", tokenRoute);
+app.use("/comment", commentRoute);
 
 // connecting to mongodb database
 mongoose.connect(process.env.REACT_APP_DB_URL,{

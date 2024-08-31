@@ -221,7 +221,7 @@ const googleAuthenticate = asyncHandler(async(req, res)=>{
         'postmessage',
       );
     const { tokens } = await googleClient.getToken(req.body.code);
-    console.log(tokens)
+    // console.log(tokens)
     const ticket = await googleClient.verifyIdToken({
         idToken: tokens.id_token,
         audient: `${process.env.REACT_APP_GOOGLE_CLIENT_ID}`,

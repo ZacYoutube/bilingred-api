@@ -72,9 +72,7 @@ const searchPlaces = asyncHandler(async(req, res)=>{
     try{
         const query = req.query.query;
         const queryCut = jieba.extract(query, query.length).map(item => item['word']);
-        console.log(queryCut)
         const searchStr = queryCut.join(" ");
-        console.log(searchStr);
         // {createdAt:{$gte:ISODate("2021-01-01"),$lt:ISODate("2020-05-01"}}
         const results = await Place.find({$text: {$search: searchStr}}).sort({"createdAt": -1});
         // console.log(results)  
@@ -85,7 +83,6 @@ const searchPlaces = asyncHandler(async(req, res)=>{
         //     item['profileImageUrl'] = userInfo.profilePictureURL;
         //     item['user'] = userInfo;
         // }
-        console.log(tempList)
         res.status(200).json(tempList);     
     }catch(err){
         res.status(400).send(err);
